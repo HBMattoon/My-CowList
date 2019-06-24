@@ -24,7 +24,6 @@ app.get('/api/cows',(req, res) => {
 
     res.status(200).send(result);
   })
-
 })
 
 app.post('/api/cows', (req, res) => {
