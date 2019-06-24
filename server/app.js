@@ -2,7 +2,9 @@
 var express = require('express');
 var partials = require('express-partials');
 const bodyParser = require('body-parser');
+const Promise = require ('bluebird')
 const db = require('./database/db')
+const getReqBody= require('./tools');
 
 const app = express();
 
@@ -13,8 +15,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 console.log('this is the apps');
 
 app.get('/api/cows',(req, res) => {
-  console.log(req.body);
-  res.status(200).send('this it a test')
+  var query = `select * from cows`
+  db.queryAsync(query, (err, result) => {
+    if(err){
+      console.log(err);
+    }
+    console.log(result);
+
+    res.status(200).send(result);
+  })
+
 })
 
 app.post('/api/cows', (req, res) => {
