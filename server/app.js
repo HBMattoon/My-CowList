@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 console.log('this is the apps');
 
-app.get('/',(req, res) => {
+app.get('/api/cows',(req, res) => {
   console.log(req.body);
   res.status(200).send('this it a test')
 })
 
-app.post('/', (req, res) => {
+app.post('/api/cows', (req, res) => {
   console.log(req.body);
   res.status(200).end();
 })
